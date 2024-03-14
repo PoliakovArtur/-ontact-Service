@@ -22,12 +22,12 @@
                 <td th:text="${contact.email}"></td>
                 <td th:text="${contact.phoneNumber}"></td>
                 <td>
-                    <a th:href="@{/{id}/edit(id=${contact.id})}">Редактировать</a>
-                    <a th:href="@{/{id}/delete(id=${contact.id})}">Удалить</a>
+                    <a th:href="@{/contacts/{id}/edit(id=${contact.id})}">Редактировать</a>
+                    <a th:href="@{/contacts/{id}/delete(id=${contact.id})}">Удалить</a>
                 </td>
             </tr>
         </tbody>
     </table>
-    <a th:href="@{/create}">Создать</a>
+    <a th:href="@{/contacts/create}">Создать</a>
 </body>
 </html>

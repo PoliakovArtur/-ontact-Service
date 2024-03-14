@@ -1,4 +1,4 @@
-package com.example.repository.utils;
+package com.example.repository.impl;
 
 import com.example.model.Contact;
 import org.springframework.jdbc.core.RowMapper;

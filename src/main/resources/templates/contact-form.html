@@ -5,22 +5,23 @@
     <title>Менеджер Контактов</title>
 </head>
 <body>
-    <form action="/" method="post">
+    <form action="/contacts" method="post">
+        <input type="hidden" name="id" th:value="${contact.id}">
         <div>
             <label for="firstName">Имя:</label>
-            <textarea id="firstName" name = "firstName" required th:value="${contact.firstName}"></textarea>
+            <textarea id="firstName" name = "firstName" required th:text="${contact.firstName}"></textarea>
         </div>
         <div>
             <label for="lastName">Фамилия:</label>
-            <textarea id="lastName" name = "lastName" required th:value="${contact.lastName}"></textarea>
+            <textarea id="lastName" name = "lastName" required th:text="${contact.lastName}"></textarea>
         </div>
         <div>
             <label for="email">Email:</label>
-            <textarea id="email" name = "email" required th:value="${contact.email}"></textarea>
+            <textarea id="email" name = "email" required th:text="${contact.email}"></textarea>
         </div>
         <div>
             <label for="phoneNumber">Номер телефона:</label>
-            <textarea id="phoneNumber" name = "phoneNumber" required th:value="${contact.phoneNumber}"></textarea>
+            <textarea id="phoneNumber" name = "phoneNumber" required th:text="${contact.phoneNumber}"></textarea>
         </div>
         <button type="submit">Save</button>
     </form>

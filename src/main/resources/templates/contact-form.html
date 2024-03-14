@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Менеджер Контактов</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <div>
+            <label for="firstName">Имя:</label>
+            <textarea id="firstName" name = "firstName" required th:value="${contact.firstName}"></textarea>
+        </div>
+        <div>
+            <label for="lastName">Фамилия:</label>
+            <textarea id="lastName" name = "lastName" required th:value="${contact.lastName}"></textarea>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <textarea id="email" name = "email" required th:value="${contact.email}"></textarea>
+        </div>
+        <div>
+            <label for="phoneNumber">Номер телефона:</label>
+            <textarea id="phoneNumber" name = "phoneNumber" required th:value="${contact.phoneNumber}"></textarea>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

@@ -6,7 +6,9 @@ import com.example.repository.utils.ContactRowMapper;
 import com.example.repository.utils.QueryUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.support.DataAccessUtils;
+import org.springframework.jdbc.core.ArgumentPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,7 +31,9 @@ public class ContactRepositoryImpl implements ContactRepository {
     @Override
     public Optional<Contact> findById(Long id) {
         return Optional.ofNullable(DataAccessUtils.singleResult(
-                jdbcTemplate.query("SELECT * FROM contacts WHERE id = ?", rowMapper)));
+                jdbcTemplate.query("SELECT * FROM contacts WHERE id = ?",
+                        new ArgumentPreparedStatementSetter(new Object[] {id}),
+                        new RowMapperResultSetExtractor<>(rowMapper, 1))));
     }
 
     @Override
@@ -46,7 +50,7 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public void save(Contact contact) {
-        jdbcTemplate.update("INSERT INTO task (first_name, last_name, email, phone_number) VALUES (?, ?, ?, ?)",
-                contact.firstName(), contact.lastName(), contact.email(), contact.phoneNumber());
+        jdbcTemplate.update("INSERT INTO contacts (first_name, last_name, email, phone_number) VALUES (?, ?, ?, ?)",
+                contact.getFirstName(), contact.getLastName(), contact.getEmail(), contact.getPhoneNumber());
     }
 }

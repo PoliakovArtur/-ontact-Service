@@ -9,6 +9,5 @@ public interface ContactService {
     List<Contact> findAll();
     void save(Contact contact);
     Contact findById(long id);
-    void updateById(Contact contact);
     void deleteById(long id);
 }

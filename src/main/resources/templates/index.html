@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Manager</title>
+    <title>Менеджер контактов</title>
 </head>
 <body>
-    <h1>Менеджер контактов</h1>
-    <p>Добро пожаловать в менеджер контактов!</p>
-    <p>Данное приложение позволяет вам </p>
+    <table border="5" cellpadding="5" cellspacing="5">
+        <caption>Контакты</caption>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Email</th>
+                <th>Номер телефона</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="contact : ${contacts}">
+                <td th:text="${contact.firstName}"></td>
+                <td th:text="${contact.lastName}"></td>
+                <td th:text="${contact.email}"></td>
+                <td th:text="${contact.phoneNumber}"></td>
+                <td>
+                    <a th:href="@{/{id}/edit(id=${contact.id})}">Редактировать</a>
+                    <a th:href="@{/{id}/delete(id=${contact.id})}">Удалить</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/create}">Создать</a>
 </body>
 </html>

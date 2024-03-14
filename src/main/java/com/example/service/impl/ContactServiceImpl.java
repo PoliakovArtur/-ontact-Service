@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
 
-    private ContactRepository repository;
+    private final ContactRepository repository;
 
     @Override
     public List<Contact> findAll() {
@@ -22,18 +22,16 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public void save(Contact contact) {
-        repository.save(contact);
+        if(contact.getId() != null && repository.findById(contact.getId()).isPresent()) {
+            repository.updateById(contact);
+        } else {
+            repository.save(contact);
+        }
     }
 
     @Override
     public Contact findById(long id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Контакт не найден"));
-    }
-
-    @Override
-    public void updateById(Contact contact) {
-        int updateRows = repository.updateById(contact);
-        if(updateRows == 0) throw new NotFoundException("Контакт не найден");
     }
 
     @Override
